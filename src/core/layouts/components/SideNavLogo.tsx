@@ -3,6 +3,13 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
+const getLogo = (theme?: string) => {
+  if (theme === "light") {
+    return "/images/logo-landscape-light.png";
+  }
+  return "/images/logo-landscape-dark.png";
+};
+
 const SideNavLogo = () => {
   const { theme } = useTheme();
   const mounted = useMounted();
@@ -11,11 +18,18 @@ const SideNavLogo = () => {
     return <></>;
   }
 
-  const src = theme === "light" ? "/images/logo-landscape-light.png" : "/images/logo-landscape-dark.png";
+  const src = getLogo(theme);
 
   return (
     <Link href={"/dashboard"}>
-      <Image alt='logo' style={{ width: "150px" }} className='mx-auto' src={src} />
+      <Image
+        alt='logo landscape'
+        className='logo-landscape'
+        width={150}
+        height={0}
+        style={{ height: "auto" }}
+        src={src}
+      />
     </Link>
   );
 };

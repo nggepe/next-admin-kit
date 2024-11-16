@@ -3,8 +3,8 @@
   width: 280px;
   height: 100vh;
   box-shadow:
-    4px 70px 6px 2px var(--black-a1),
-    1px 70px 0px 2px var(--white-a7);
+    4px 0 6px 2px var(--black-a1),
+    1px 0 0px 2px var(--white-a7);
   backdrop-filter: blur(5px);
   position: sticky;
 }
@@ -12,16 +12,18 @@
 .dark .SideNavWrapper {
   background-color: var(--black-a4);
   box-shadow:
-    4px 70px 6px 2px var(--white-a1),
-    1px 70px 0px 1px var(--white-a3);
+    4px 0 6px 2px var(--white-a1),
+    1px 0 0px 1px var(--white-a3);
 }
 
 .SideNavWrapper.mini {
-  width: 80px;
   position: fixed;
   z-index: 10;
+  left: -265px;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .SideNavWrapper.mini:hover {
-  width: 280px;
+  left: 0;
 }
