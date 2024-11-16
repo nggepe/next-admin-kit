@@ -3,9 +3,11 @@ name: Deployment
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
-  ci-build:
+  ci-build-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,3 +20,5 @@ jobs:
       - name: Build app with .env
         run: |
           echo DATABASE_URL="postgresql://sample:12345@localhost:5432/test?schema=public" >> .env
+      - run: npm run build
+      - run: npm run test:coverage

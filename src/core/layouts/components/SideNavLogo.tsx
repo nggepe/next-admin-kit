@@ -1,5 +1,6 @@
 import useMounted from "@/core/hooks/useMounted";
 import { useTheme } from "next-themes";
+import Image from "next/image";
 import Link from "next/link";
 
 const SideNavLogo = () => {
@@ -14,7 +15,7 @@ const SideNavLogo = () => {
 
   return (
     <Link href={"/dashboard"}>
-      <img style={{ width: "150px" }} className='mx-auto' src={src} />
+      <Image alt='logo' style={{ width: "150px" }} className='mx-auto' src={src} />
     </Link>
   );
 };

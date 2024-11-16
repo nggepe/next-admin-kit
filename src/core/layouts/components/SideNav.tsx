@@ -1,5 +1,5 @@
 "use client";
-import { Box, Button, Flex, IconButton } from "@radix-ui/themes";
+import { Box, Flex, IconButton } from "@radix-ui/themes";
 import "./SideNav.css";
 import SideNavLogo from "./SideNavLogo";
 import useMounted from "@/core/hooks/useMounted";
