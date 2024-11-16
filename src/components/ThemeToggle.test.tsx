@@ -3,11 +3,10 @@ import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "next-themes";
 import { Mock } from "vitest";
 
-vi.mock("next-themes", () => ({
-  useTheme: vi.fn()
-}));
-
 describe("ThemeToggle", () => {
+  vi.mock("next-themes", () => ({
+    useTheme: vi.fn()
+  }));
   it("should dark renders", () => {
     (useTheme as Mock).mockReturnValue({ theme: "dark" });
 

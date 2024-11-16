@@ -31,12 +31,6 @@
   flex-grow: 1;
 }
 
-/* reset */
-button,
-p {
-  all: unset;
-}
-
 .NavigationMenuList {
   padding-top: 4.5px;
   display: flex;

@@ -27,3 +27,15 @@
 .SideNavWrapper.mini:hover {
   left: 0;
 }
+
+.SideNavWrapper.mobile-hide {
+  left: -285px;
+  position: fixed;
+  z-index: 10;
+}
+
+.SideNavWrapper.mobile-show {
+  left: 0;
+  position: fixed;
+  z-index: 10;
+}
