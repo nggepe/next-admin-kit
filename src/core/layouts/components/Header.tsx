@@ -9,6 +9,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import React, { AnchorHTMLAttributes, ForwardedRef, ReactNode } from "react";
+import Link from "next/link";
 
 const ListItem = React.forwardRef(
   (
@@ -22,14 +23,16 @@ const ListItem = React.forwardRef(
   ) => (
     <li>
       <NavigationMenu.Link asChild>
-        <a className={`ListItemLink ${className}`} {...props} ref={forwardedRef}>
+        <Link href={"/"} className={`ListItemLink ${className}`} {...props} ref={forwardedRef}>
           <div className='ListItemHeading'>{title}</div>
           <p className='ListItemText'>{children}</p>
-        </a>
+        </Link>
       </NavigationMenu.Link>
     </li>
   )
 );
+
+ListItem.displayName = "ListItem";
 
 const Header = () => {
   return (
@@ -45,7 +48,7 @@ const Header = () => {
               <ul className='List one'>
                 <li style={{ gridRow: "span 3" }}>
                   <NavigationMenu.Link asChild>
-                    <a className='Callout' href='/'>
+                    <Link className='Callout' href='/'>
                       <svg aria-hidden width='38' height='38' viewBox='0 0 25 25' fill='white'>
                         <path d='M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z'></path>
                         <path d='M12 0H4V8H12V0Z'></path>
@@ -53,7 +56,7 @@ const Header = () => {
                       </svg>
                       <div className='CalloutHeading'>Radix Primitives</div>
                       <p className='CalloutText'>Unstyled, accessible components for React.</p>
-                    </a>
+                    </Link>
                   </NavigationMenu.Link>
                 </li>
 
