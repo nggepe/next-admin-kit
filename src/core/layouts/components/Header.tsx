@@ -10,6 +10,9 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import React, { AnchorHTMLAttributes, ForwardedRef, ReactNode } from "react";
 import Link from "next/link";
+import { IconButton } from "@radix-ui/themes";
+import { SideNavStateIcon } from "@/core/constants/SideNavStateIcon";
+import { useLayoutContext } from "@/core/context/LayoutContext";
 
 const ListItem = React.forwardRef(
   (
@@ -35,9 +38,14 @@ const ListItem = React.forwardRef(
 ListItem.displayName = "ListItem";
 
 const Header = () => {
+  const { sideNavState, toggleSideNavState } = useLayoutContext();
   return (
     <header className='NavigationContainer'>
-      <div></div>
+      <div>
+        {sideNavState === "mobile-hide" && (
+          <IconButton onClick={toggleSideNavState}>{SideNavStateIcon[sideNavState]}</IconButton>
+        )}
+      </div>
       <NavigationMenu.Root className='NavigationMenuRoot'>
         <NavigationMenu.List className='NavigationMenuList'>
           <NavigationMenu.Item>

@@ -20,7 +20,7 @@ const LayoutWrapper = ({ children }: { children: ReactNode }) => {
                 <Header />
                 <div style={{ height: "100vh", marginTop: "-70px", paddingTop: "70px", overflowY: "scroll" }}>
                   <main className='flex-1'>
-                    <Container maxWidth={"100%"} style={{ padding: "1rem 2rem" }}>
+                    <Container maxWidth={"100%"} style={{ padding: "1rem 2rem" }} aria-label='container fluid'>
                       {children}
                     </Container>
                   </main>

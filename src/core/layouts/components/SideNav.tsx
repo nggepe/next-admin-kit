@@ -15,10 +15,15 @@ const SideNav = () => {
   }
 
   return (
-    <Box className={`SideNavWrapper transition-200 ${sideNavState}`}>
+    <Box className={`SideNavWrapper transition-200 ${sideNavState}`} aria-label='side navigation wrapper'>
       <Flex justify={"between"} align={"center"} style={{ padding: "0.75rem" }}>
         <SideNavLogo />
-        <IconButton variant={"outline"} className='ToggleSideNav' onClick={toggleSideNavState}>
+        <IconButton
+          variant={"outline"}
+          aria-label='Toggle Side Nav'
+          className='ToggleSideNav'
+          onClick={toggleSideNavState}
+        >
           {SideNavStateIcon[sideNavState]}
         </IconButton>
       </Flex>
