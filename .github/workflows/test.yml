@@ -1,0 +1,20 @@
+name: Deployment
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  ci-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "npm"
+      - run: npm install
+      - name: Build app with .env
+        run: |
+          echo DATABASE_URL="postgresql://sample:12345@localhost:5432/test?schema=public" >> .env
