@@ -8,7 +8,7 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 const SideNavMenu = () => {
   const menus = useMemo(() => {
     return accesses.map(accessToMenu);
-  }, [accesses]);
+  }, []);
   return (
     <nav>
       <ul>{menus}</ul>
@@ -52,7 +52,7 @@ const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
     if (typeof window !== undefined) {
       setIsActive(window.location.pathname === access.path);
     }
-  }, []);
+  }, [access.path]);
   return (
     <li key={access.key} aria-label={access.key}>
       <Link href={access.path!}>
@@ -79,7 +79,7 @@ const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
     if (typeof window !== undefined) {
       setIsActive(checkActive(window.location.pathname, access));
     }
-  }, []);
+  }, [access]);
   return (
     <li key={access.key} aria-label={access.key}>
       <div
