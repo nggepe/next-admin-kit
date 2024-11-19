@@ -39,3 +39,43 @@
   position: fixed;
   z-index: 10;
 }
+
+.SideNavWrapper ul {
+  list-style: none;
+  padding: 0;
+  padding-top: 0.5rem;
+}
+
+.SideNavWrapper li {
+  margin-bottom: 0.5rem;
+}
+
+.SideNavWrapper li a {
+  text-decoration: none;
+  color: var(--black-a9);
+}
+
+.dark .SideNavWrapper li a {
+  text-decoration: none;
+  color: var(--white-a9);
+}
+
+.SideNavWrapper li .hover:hover,
+.SideNavWrapper li .hover.active {
+  background-color: var(--white-a6);
+  transition: 0.5s;
+  box-shadow: var(--shadow-4);
+  border-radius: 0.5rem;
+  text-decoration: none;
+}
+
+.dark .SideNavWrapper li .hover:hover,
+.dark .SideNavWrapper li .hover.active {
+  background-color: var(--black-a6);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--gray-a1), var(--gray-6) 25%),
+    0 8px 40px var(--black-a3),
+    0 12px 32px -16px var(--black-a5);
+  transition: 0.5s;
+  border-radius: 0.5rem;
+}

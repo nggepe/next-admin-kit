@@ -1,10 +1,12 @@
 "use client";
-import { Box, Flex, IconButton } from "@radix-ui/themes";
+import { Box, Flex, IconButton, ScrollArea } from "@radix-ui/themes";
 import "./SideNav.css";
 import SideNavLogo from "./SideNavLogo";
 import useMounted from "@/core/hooks/useMounted";
 import { useLayoutContext } from "@/core/context/LayoutContext";
 import { SideNavStateIcon } from "@/core/constants/SideNavStateIcon";
+import SideNavMenu from "./SideNavMenu";
+import { Suspense } from "react";
 
 const SideNav = () => {
   const mounted = useMounted();
@@ -27,6 +29,11 @@ const SideNav = () => {
           {SideNavStateIcon[sideNavState]}
         </IconButton>
       </Flex>
+      <ScrollArea scrollbars='vertical' className='p-3' style={{ height: "calc(100vh - 100px)", marginTop: "0.5rem" }}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SideNavMenu />
+        </Suspense>
+      </ScrollArea>
     </Box>
   );
 };

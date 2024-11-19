@@ -2,3 +2,4 @@ npm run prettier:format
 git add -A .
 npm run test:coverage -- --silent
 npm run build
+npm run check:access
