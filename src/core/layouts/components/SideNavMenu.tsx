@@ -1,24 +1,27 @@
 "use client";
 import { accesses, accessProps } from "@/configs/accesses";
+import { SideNavMenuProvider, useSideNavMenuContext } from "@/core/context/SideNavMenuContext";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const SideNavMenu = () => {
   const menus = useMemo(() => {
     return accesses.map(accessToMenu);
   }, []);
   return (
-    <nav>
-      <ul>{menus}</ul>
-    </nav>
+    <SideNavMenuProvider>
+      <nav>
+        <ul>{menus}</ul>
+      </nav>
+    </SideNavMenuProvider>
   );
 };
 
 export default SideNavMenu;
 
-const accessToMenu = (access: accessProps) => {
+export const accessToMenu = (access: accessProps) => {
   if (access.type === "sidenavSeparator") {
     return SidenavSeparatorElement(access);
   }
@@ -26,7 +29,7 @@ const accessToMenu = (access: accessProps) => {
   if (access.type === "sidenavMenu") {
     return SideNavMenuWrapperPath(access);
   }
-  return <Fragment key={access.key} />;
+  return null;
 };
 
 const SidenavSeparatorElement = (access: accessProps) => {
@@ -47,16 +50,22 @@ const SideNavMenuWrapperPath = (access: accessProps) => {
 };
 
 const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      setIsActive(window.location.pathname === access.path);
-    }
-  }, [access.path]);
+  const { activePath, setActivePath } = useSideNavMenuContext();
+
+  const isActive = useMemo(() => {
+    return activePath === access.path;
+  }, [activePath, access.path]);
+
   return (
     <li key={access.key} aria-label={access.key}>
       <Link href={access.path!}>
-        <div className={`cursor-pointer px-3 py-2 d-block position-relative hover ${isActive ? "active" : ""}`}>
+        <div
+          className={`cursor-pointer px-3 py-2 d-block position-relative hover ${isActive ? "active" : ""}`}
+          onClick={() => {
+            setActivePath(access.path ?? "");
+          }}
+          aria-label={`menu-item-${access.key}`}
+        >
           <Flex gap='4' justify={"start"} align={"center"}>
             {access.icon && <Flex>{access.icon}</Flex>}
             <Flex flexGrow='1' style={{ maxWidth: "200px" }}>
@@ -74,17 +83,17 @@ const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
 };
 
 const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
-  const [isActive, setIsActive] = useState<boolean>(false);
+  const { activePath } = useSideNavMenuContext();
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
-    if (typeof window !== undefined) {
-      setIsActive(checkActive(window.location.pathname, access));
-    }
-  }, [access]);
+    setIsActive(checkActive(activePath, access));
+  }, [activePath, access]);
   return (
     <li key={access.key} aria-label={access.key}>
       <div
         className={`cursor-pointer px-3 py-2 d-block position-relative hover ${isActive ? "active" : ""}`}
         onClick={() => setIsActive(!isActive)}
+        aria-label={`menu-item-${access.key}`}
       >
         <Flex gap='4' justify={"start"} align={"center"}>
           {access.icon && <Flex>{access.icon}</Flex>}
@@ -102,7 +111,7 @@ const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
       </div>
       <ul>
         {isActive &&
-          access.children?.map((child) => {
+          access.children!.map((child) => {
             return accessToMenu(child);
           })}
       </ul>
@@ -110,7 +119,7 @@ const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
   );
 };
 
-const checkActive = (windowPath: string, access: accessProps) => {
+export const checkActive = (windowPath: string, access: accessProps) => {
   if (access.children) {
     let active = false;
     for (const child of access.children) {

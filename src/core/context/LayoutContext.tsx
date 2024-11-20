@@ -25,6 +25,12 @@ export const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
+    if (mediaQuery.matches) {
+      setSideNavState("large");
+    } else {
+      setSideNavState("mobile-hide");
+    }
+
     const handleMediaQueryChange = (event: MediaQueryListEvent) => {
       if (event.matches) {
         setSideNavState("large");

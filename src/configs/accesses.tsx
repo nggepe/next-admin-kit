@@ -25,7 +25,7 @@ export const accesses: accessProps[] = [
   {
     key: "home",
     name: "Home",
-    path: "/dashboard",
+    path: "/home",
     icon: <HomeIcon />,
     type: "sidenavMenu",
     sequence: 2
@@ -38,16 +38,16 @@ export const accesses: accessProps[] = [
     sequence: 3,
     children: [
       {
-        key: "/dashboard/master/users",
-        path: "/dashboard/master/users",
+        key: "/master/users",
+        path: "/master/users",
         name: "Users",
         icon: <PersonIcon />,
         sequence: 1,
         type: "sidenavMenu"
       },
       {
-        key: "/dashboard/master/role",
-        path: "/dashboard/master/role",
+        key: "/master/role",
+        path: "/master/role",
         name: "Roles",
         icon: <LockClosedIcon />,
         sequence: 2,

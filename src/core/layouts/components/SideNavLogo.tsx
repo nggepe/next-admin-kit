@@ -22,14 +22,7 @@ const SideNavLogo = () => {
 
   return (
     <Link href={"/dashboard"}>
-      <Image
-        alt='logo landscape'
-        className='logo-landscape'
-        width={150}
-        height={0}
-        style={{ height: "auto" }}
-        src={src}
-      />
+      <Image alt='logo landscape' className='logo-landscape' width={150} height={55} src={src} priority />
     </Link>
   );
 };
