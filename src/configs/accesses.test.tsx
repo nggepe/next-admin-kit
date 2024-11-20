@@ -1,4 +1,4 @@
-/**this test used to restrict the configuration of the type */
+/**this test used to make sure of the accesses config is still on the format track */
 
 import { accesses, accessProps } from "./accesses";
 
