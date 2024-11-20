@@ -10,7 +10,13 @@ export default defineConfig({
       reporter: ["text", "json", "html"],
       provider: "v8",
       include: ["src/**/*.{js,jsx,ts,tsx}"],
-      exclude: ["node_modules", "src/types", "src/app/layout.tsx"]
+      exclude: [
+        "node_modules",
+        "src/types",
+        "src/app/layout.tsx",
+        "src/**/*.test.ts", // Exclude .test.ts files
+        "src/**/*.test.tsx" // Exclude .test.tsx files
+      ]
     },
     globals: true,
     setupFiles: "./vitest.setup.ts"
