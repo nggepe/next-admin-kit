@@ -5,123 +5,96 @@ import "@radix-ui/colors/mauve.css";
 import "@radix-ui/colors/purple.css";
 import "@radix-ui/colors/violet.css";
 import "./Header.css";
-import ThemeToggle from "@/components/ThemeToggle";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { CaretDownIcon } from "@radix-ui/react-icons";
-import React, { AnchorHTMLAttributes, ForwardedRef, ReactNode } from "react";
-import Link from "next/link";
-import { IconButton } from "@radix-ui/themes";
+import { Avatar, Button, Flex, IconButton, Text } from "@radix-ui/themes";
 import { SideNavStateIcon } from "@/core/constants/SideNavStateIcon";
 import { useLayoutContext } from "@/core/context/LayoutContext";
+import { CaretDownIcon, PersonIcon } from "@radix-ui/react-icons";
+import { useTheme } from "next-themes";
+import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 
-const ListItem = React.forwardRef(
-  (
-    {
-      className,
-      children,
-      title,
-      ...props
-    }: { className?: string; children?: ReactNode; title: string } & AnchorHTMLAttributes<HTMLAnchorElement>,
-    forwardedRef: ForwardedRef<HTMLAnchorElement>
-  ) => (
-    <li>
-      <NavigationMenu.Link asChild>
-        <Link href={"/"} className={`ListItemLink ${className}`} {...props} ref={forwardedRef}>
-          <div className='ListItemHeading'>{title}</div>
-          <p className='ListItemText'>{children}</p>
-        </Link>
-      </NavigationMenu.Link>
-    </li>
-  )
-);
+const Profile = () => {
+  const { theme, setTheme } = useTheme();
 
-ListItem.displayName = "ListItem";
+  return (
+    <Flex direction={"column"} width={"250px"} align={"center"} justify={"start"} className='py-3'>
+      <Flex direction={"column"} align={"center"}>
+        <Avatar fallback={"A"} size={"5"} className='mb-2' src='/images/profile.jpeg' radius='full'></Avatar>
+        <Text as='span' size={"4"} weight='bold' style={{ marginTop: "1rem" }}>
+          Gilang Pratama
+        </Text>
+        <Flex width={"200px"}>
+          <Text as='span' size={"1"} weight='light' truncate>
+            gilang.pratama.banyuwangi@gmail.com
+          </Text>
+        </Flex>
+      </Flex>
+      <Flex direction={"column"} align={"center"} className='mt-3'>
+        <Button variant={"outline"} size={"1"}>
+          Logout
+        </Button>
+      </Flex>
+      <Flex direction={"column"} align={"center"} className='mt-4 w-100'>
+        <Flex
+          className='hover w-100 cursor-pointer px-3 py-2'
+          gap={"3"}
+          align={"start"}
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        >
+          <Flex align={"center"}>
+            {theme === "light" ? <SunIcon aria-label='Theme is light' /> : <MoonIcon aria-label='Theme is dark' />}
+          </Flex>
+          <Flex align={"center"}>
+            <Text as='span' size={"1"} weight='light' truncate>
+              Change Theme
+            </Text>
+          </Flex>
+        </Flex>
+        <Flex className='hover w-100 cursor-pointer px-3 py-2' gap={"3"} align={"start"}>
+          <Flex align={"center"}>
+            <PersonIcon />
+          </Flex>
+          <Flex align={"center"}>
+            <Text as='span' size={"1"} weight='light' truncate>
+              Edit Profile
+            </Text>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+};
 
 const Header = () => {
   const { sideNavState, toggleSideNavState } = useLayoutContext();
   return (
     <header className='NavigationContainer'>
-      <div>
-        {sideNavState === "mobile-hide" && (
-          <IconButton onClick={toggleSideNavState}>{SideNavStateIcon[sideNavState]}</IconButton>
-        )}
-      </div>
-      <NavigationMenu.Root className='NavigationMenuRoot'>
-        <NavigationMenu.List className='NavigationMenuList'>
-          <NavigationMenu.Item>
-            <NavigationMenu.Trigger className='NavigationMenuTrigger'>
-              Learn <CaretDownIcon className='CaretDown' aria-hidden />
-            </NavigationMenu.Trigger>
-            <NavigationMenu.Content className='NavigationMenuContent'>
-              <ul className='List one'>
-                <li style={{ gridRow: "span 3" }}>
-                  <NavigationMenu.Link asChild>
-                    <Link className='Callout' href='/'>
-                      <svg aria-hidden width='38' height='38' viewBox='0 0 25 25' fill='white'>
-                        <path d='M12 25C7.58173 25 4 21.4183 4 17C4 12.5817 7.58173 9 12 9V25Z'></path>
-                        <path d='M12 0H4V8H12V0Z'></path>
-                        <path d='M17 8C19.2091 8 21 6.20914 21 4C21 1.79086 19.2091 0 17 0C14.7909 0 13 1.79086 13 4C13 6.20914 14.7909 8 17 8Z'></path>
-                      </svg>
-                      <div className='CalloutHeading'>Radix Primitives</div>
-                      <p className='CalloutText'>Unstyled, accessible components for React.</p>
-                    </Link>
-                  </NavigationMenu.Link>
-                </li>
-
-                <ListItem href='https://stitches.dev/' title='Stitches'>
-                  CSS-in-JS with best-in-class developer experience.
-                </ListItem>
-                <ListItem href='/colors' title='Colors'>
-                  Beautiful, thought-out palettes with auto dark mode.
-                </ListItem>
-                <ListItem href='https://icons.radix-ui.com/' title='Icons'>
-                  A crisp set of 15x15 icons, balanced and consistent.
-                </ListItem>
-              </ul>
-            </NavigationMenu.Content>
-          </NavigationMenu.Item>
-
-          <NavigationMenu.Item>
-            <NavigationMenu.Trigger className='NavigationMenuTrigger'>
-              Overview <CaretDownIcon className='CaretDown' aria-hidden />
-            </NavigationMenu.Trigger>
-            <NavigationMenu.Content className='NavigationMenuContent'>
-              <ul className='List two'>
-                <ListItem title='Introduction' href='/primitives/docs/overview/introduction'>
-                  Build high-quality, accessible design systems and web apps.
-                </ListItem>
-                <ListItem title='Getting started' href='/primitives/docs/overview/getting-started'>
-                  A quick tutorial to get you up and running with Radix Primitives.
-                </ListItem>
-                <ListItem title='Styling' href='/primitives/docs/guides/styling'>
-                  Unstyled and compatible with any styling solution.
-                </ListItem>
-                <ListItem title='Animation' href='/primitives/docs/guides/animation'>
-                  Use CSS keyframes or any animation library of your choice.
-                </ListItem>
-                <ListItem title='Accessibility' href='/primitives/docs/overview/accessibility'>
-                  Tested in a range of browsers and assistive technologies.
-                </ListItem>
-                <ListItem title='Releases' href='/primitives/docs/overview/releases'>
-                  Radix Primitives releases and their changelogs.
-                </ListItem>
-              </ul>
-            </NavigationMenu.Content>
-          </NavigationMenu.Item>
-
-          <NavigationMenu.Item>
-            <ThemeToggle />
-          </NavigationMenu.Item>
-
-          <NavigationMenu.Indicator className='NavigationMenuIndicator'>
-            <div className='Arrow' />
-          </NavigationMenu.Indicator>
-        </NavigationMenu.List>
-
-        <div className='ViewportPosition'>
-          <NavigationMenu.Viewport className='NavigationMenuViewport' />
-        </div>
-      </NavigationMenu.Root>
+      <Flex justify={"between"} align={"center"} className='w-100 p-2'>
+        <Flex>
+          {sideNavState === "mobile-hide" && (
+            <IconButton onClick={toggleSideNavState}>{SideNavStateIcon[sideNavState]}</IconButton>
+          )}
+        </Flex>
+        <Flex>
+          <NavigationMenu.Root className='NavigationMenuRoot'>
+            <NavigationMenu.List className='NavigationMenuList'>
+              <NavigationMenu.Item>
+                <NavigationMenu.Trigger className='NavigationMenuTrigger'>
+                  <Avatar fallback={"ST"} size={"2"} src='/images/profile.jpeg' className='me-2' radius='full'></Avatar>
+                  <Text as='span'>Gilang Pratama</Text>
+                  <CaretDownIcon className='CaretDown' aria-hidden />
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className='NavigationMenuContent'>
+                  <Profile />
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+              <NavigationMenu.Indicator className='NavigationMenuIndicator'>
+                <div className='Arrow' />
+              </NavigationMenu.Indicator>
+            </NavigationMenu.List>
+          </NavigationMenu.Root>
+        </Flex>
+      </Flex>
     </header>
   );
 };

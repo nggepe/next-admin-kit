@@ -49,7 +49,7 @@ const SideNavMenuWrapperPath = (access: accessProps) => {
   return <SideNavMenuNoChildren key={access.key} access={access} />;
 };
 
-const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
+export const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
   const { activePath, setActivePath } = useSideNavMenuContext();
 
   const isActive = useMemo(() => {
@@ -82,7 +82,7 @@ const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
   );
 };
 
-const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
+export const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
   const { activePath } = useSideNavMenuContext();
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {

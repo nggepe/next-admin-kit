@@ -21,7 +21,7 @@ const SideNavLogo = () => {
   const src = getLogo(theme);
 
   return (
-    <Link href={"/dashboard"}>
+    <Link href={"/home"}>
       <Image alt='logo landscape' className='logo-landscape' width={150} height={55} src={src} priority />
     </Link>
   );
