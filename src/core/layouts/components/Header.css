@@ -1,22 +1,19 @@
 .NavigationContainer {
-  background-color: var(--white-a4);
+  background-color: var(--color-panel);
   padding: 4px;
   height: 70px;
-  border-bottom: 2px solid var(--white-a5);
   position: sticky;
   right: 0;
   top: 0;
   inset-block-start: 0;
-  backdrop-filter: blur(5px);
-  box-shadow: 4px 2px 6px 2px var(--black-a1);
+  backdrop-filter: blur(64px);
   display: flex;
   align-items: center;
+  border-bottom: 2px solid var(--white-a9);
 }
 
 .dark .NavigationContainer {
-  background-color: var(--black-a4);
-  border-bottom: 2px solid var(--white-a4);
-  box-shadow: 4px 2px 6px 2px var(--white-a1);
+  border-bottom: 1px solid var(--white-a3);
 }
 
 .NavigationMenuRoot {
@@ -87,18 +84,18 @@
 
 .NavigationMenuContent {
   position: absolute;
-  top: 53px;
+  top: 68px;
   right: 0;
   animation-duration: 250ms;
   animation-timing-function: ease;
-  background-color: var(--white-a10);
+  background-color: var(--color-panel);
   border-radius: 0.5rem;
   box-shadow: var(--shadow-4);
+  backdrop-filter: blur(64px);
   border: 2px solid var(--white-a5);
 }
 
 .dark .NavigationMenuContent {
-  background-color: var(--black-a9);
   box-shadow:
     0 0 0 1px color-mix(in oklab, var(--gray-a1), var(--gray-6) 25%),
     0 8px 40px var(--black-a3),
@@ -133,7 +130,7 @@
   align-items: flex-end;
   justify-content: center;
   height: 10px;
-  top: calc(100% - 5px);
+  top: calc(100% + 10px);
   overflow: hidden;
   z-index: 1;
   transition:

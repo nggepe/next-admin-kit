@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
-import LayoutWrapper from "./LayoutWrapper";
+import DashboardLayout from "./DashboardLayout";
 import MatchMediaMock from "vitest-matchmedia-mock";
 
-describe("LayoutWrapper", () => {
+describe("DashboardLayout", () => {
   const mediaQuery = new MatchMediaMock();
   it("should render children", () => {
     mediaQuery.useMediaQuery("(min-width: 1024px)");
     render(
-      <LayoutWrapper>
+      <DashboardLayout>
         <span>It is children</span>
-      </LayoutWrapper>
+      </DashboardLayout>
     );
 
     expect(screen.getByText("It is children")).toBeInTheDocument();

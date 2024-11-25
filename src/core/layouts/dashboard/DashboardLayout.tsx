@@ -1,14 +1,14 @@
 "use client";
-import "./LayoutWrapper.css";
 import "@radix-ui/themes/styles.css";
+import "@/core/styles/radixTheme.css";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import { Box, Container, Flex, Theme } from "@radix-ui/themes";
-import SideNav from "./components/SideNav";
-import { LayoutProvider } from "../context/LayoutContext";
+import SideNav from "../components/SideNav";
+import { LayoutProvider } from "../../context/LayoutContext";
 
-const LayoutWrapper = ({ children }: { children: ReactNode }) => {
+const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
     <ThemeProvider attribute='class' defaultTheme='system'>
       <Theme accentColor='orange' grayColor='gray' panelBackground='translucent'>
@@ -34,4 +34,4 @@ const LayoutWrapper = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default LayoutWrapper;
+export default DashboardLayout;
