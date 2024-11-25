@@ -1,4 +1,4 @@
-import LayoutWrapper from "@/core/layouts/LayoutWrapper";
+import DashboardWrapper from "@/core/layouts/dashboard/DashboardLayout";
 
 export default async function DashboardLayout({
   children
@@ -7,7 +7,7 @@ export default async function DashboardLayout({
 }>) {
   return (
     <>
-      <LayoutWrapper>{children}</LayoutWrapper>
+      <DashboardWrapper>{children}</DashboardWrapper>
     </>
   );
 }

@@ -12,6 +12,7 @@ import { useLayoutContext } from "@/core/context/LayoutContext";
 import { CaretDownIcon, PersonIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const Profile = () => {
   const { theme, setTheme } = useTheme();
@@ -30,9 +31,11 @@ const Profile = () => {
         </Flex>
       </Flex>
       <Flex direction={"column"} align={"center"} className='mt-3'>
-        <Button variant={"outline"} size={"1"}>
-          Logout
-        </Button>
+        <Link href={"/login"}>
+          <Button variant={"outline"} size={"1"}>
+            Logout
+          </Button>
+        </Link>
       </Flex>
       <Flex direction={"column"} align={"center"} className='mt-4 w-100'>
         <Flex
