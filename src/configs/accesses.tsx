@@ -23,9 +23,9 @@ export const accesses: accessProps[] = [
     sequence: 1
   },
   {
-    key: "home",
-    name: "Home",
-    path: "/home",
+    key: "dashboard",
+    name: "Dashboard",
+    path: "/",
     icon: <HomeIcon />,
     type: "sidenavMenu",
     sequence: 2
