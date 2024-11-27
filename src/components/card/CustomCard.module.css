@@ -1,14 +1,9 @@
 .borderCard {
   transition: border-color 0.3s ease;
-  box-shadow:
-    inset 0px 0px 2px 4px white,
-    var(--shadow-4);
+  box-shadow: inset var(--shadow-4);
 }
 
 /* Dark mode styles */
 :global(.dark) .borderCard {
-  /* border: 1px solid var(--white-a3); */
-  box-shadow:
-    inset 0px 0px 1px 1px var(--white-a2),
-    var(--shadow-4);
+  box-shadow: var(--shadow-4);
 }

@@ -223,7 +223,7 @@ body {
   background-color: var(--white-a6);
   transition: 0.5s;
   box-shadow:
-    0px 0px 2px 2px white,
+    0px 0px 1px 1px white,
     var(--shadow-4);
 }
 
@@ -246,4 +246,9 @@ body {
 
 .dark .layout-bg-alpha {
   background-color: var(--black-a9);
+}
+
+.bg-panel {
+  background-color: var(--color-panel);
+  backdrop-filter: blur(64px);
 }

@@ -1,8 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import SideNavMenu, { accessToMenu, checkActive } from "./SideNavMenu";
 
-import { ContainerIcon, HomeIcon, LockClosedIcon, PersonIcon } from "@radix-ui/react-icons";
-
 // Mock next/link
 vi.mock("next/link", () => {
   return {
@@ -20,55 +18,59 @@ vi.mock("next/link", () => {
     )
   };
 });
-
-describe("SideNavMenu", () => {
-  beforeAll(() => {
-    vi.doMock("@/configs/accesses", () => {
-      return {
-        accesses: [
+const mock = vi.hoisted(() => {
+  return {
+    accesses: [
+      {
+        key: "main-menus",
+        name: "Main",
+        type: "sidenavSeparator",
+        sequence: 1
+      },
+      {
+        key: "home",
+        name: "Home",
+        path: "/home",
+        type: "sidenavMenu",
+        icon: "homeIcon",
+        sequence: 2
+      },
+      {
+        key: "master",
+        name: "Master",
+        type: "sidenavMenu",
+        sequence: 3,
+        children: [
           {
-            key: "main-menus",
-            name: "Main",
-            type: "sidenavSeparator",
-            sequence: 1
+            key: "/master/users",
+            path: "/master/users",
+            name: "Users",
+            sequence: 1,
+            type: "sidenavMenu"
           },
           {
-            key: "home",
-            name: "Home",
-            path: "/home",
-            icon: <HomeIcon />,
-            type: "sidenavMenu",
-            sequence: 2
-          },
-          {
-            key: "master",
-            name: "Master",
-            icon: <ContainerIcon />,
-            type: "sidenavMenu",
-            sequence: 3,
-            children: [
-              {
-                key: "/master/users",
-                path: "/master/users",
-                name: "Users",
-                icon: <PersonIcon />,
-                sequence: 1,
-                type: "sidenavMenu"
-              },
-              {
-                key: "/master/role",
-                path: "/master/role",
-                name: "Roles",
-                icon: <LockClosedIcon />,
-                sequence: 2,
-                type: "sidenavMenu"
-              }
-            ]
+            key: "/master/role",
+            path: "/master/role",
+            name: "Roles",
+            sequence: 2,
+            type: "sidenavMenu"
           }
         ]
-      };
-    });
-  });
+      }
+    ]
+  };
+});
+
+vi.mock("@/configs/accesses", async (importOriginal) => {
+  const a = await importOriginal<typeof import("@/configs/accesses")>();
+  return {
+    ...a,
+    accesses: mock.accesses
+  };
+});
+
+describe("SideNavMenu", () => {
+  beforeAll(() => {});
 
   it("should normal render aria-label", () => {
     render(<SideNavMenu />);

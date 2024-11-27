@@ -14,7 +14,7 @@
 
 .SideNavWrapper.mini {
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   left: -265px;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -27,7 +27,7 @@
 .SideNavWrapper.mobile-hide {
   left: -285px;
   position: fixed;
-  z-index: 10;
+  z-index: 100;
 }
 
 .SideNavWrapper.mobile-show {
