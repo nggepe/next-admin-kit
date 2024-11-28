@@ -19,7 +19,14 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               <SideNav />
               <Box flexGrow='1' position='relative' className='transition-200'>
                 <Header />
-                <div style={{ height: "100vh", marginTop: "-70px", paddingTop: "70px", overflowY: "scroll" }}>
+                <div
+                  style={{
+                    height: "100vh",
+                    marginTop: "-70px",
+                    paddingTop: "70px",
+                    overflowY: "scroll"
+                  }}
+                >
                   <main className='flex-1' style={{ minHeight: "calc(100vh - 120px)" }}>
                     <Container maxWidth={"100%"} style={{ padding: "1rem 1rem" }} aria-label='container fluid'>
                       {children}

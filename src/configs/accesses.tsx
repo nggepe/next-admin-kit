@@ -5,6 +5,7 @@ import { ReactElement } from "react";
 type accessType = "sidenavMenu" | "sidenavSeparator" | "invisibleAccess";
 
 export interface accessProps {
+  /** if you set as `invisibleAccess` it will not show on your side navigation */
   type: accessType;
   name: string;
   key: string;
