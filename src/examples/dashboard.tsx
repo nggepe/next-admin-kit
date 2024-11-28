@@ -1,8 +1,10 @@
 "use client";
+import CustomCard from "@/components/card/CustomCard";
 import LineChart from "@/components/charts/LineChart";
 import LineChartPlainGradient from "@/components/charts/LineChartPlainGradient";
-import { ArrowUpIcon } from "@radix-ui/react-icons";
-import { Badge, Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
+import { ArrowUpIcon, BarChartIcon, CodeSandboxLogoIcon } from "@radix-ui/react-icons";
+import { Badge, Box, Button, Card, Flex, Grid, Heading, IconButton, Text } from "@radix-ui/themes";
+import Image from "next/image";
 import { ReactNode } from "react";
 
 const thirtyDaysLabel = [
@@ -168,7 +170,7 @@ const ThirtyDaysCard = ({
             <Badge color='gray'>30 Days</Badge>
           </Flex>
           <Flex gap={"2"} align={"start"} justify={"start"}>
-            <Text as='div' size={{ initial: "7", md: "9" }} weight={"bold"}>
+            <Text as='div' size={{ initial: "7", sm: "7", md: "8", lg: "8", xl: "9" }} weight={"bold"}>
               {value}
             </Text>
             {valueDescription}
@@ -188,10 +190,65 @@ const ThirtyDaysCard = ({
   );
 };
 
+const CustomBox = ({
+  value,
+  totalUp,
+  description,
+  imageSrc,
+  imageWidth,
+  imageHeight,
+  icon,
+  imageMarginBottom
+}: {
+  value: ReactNode;
+  totalUp: ReactNode;
+  description: ReactNode;
+  imageSrc: string;
+  imageWidth: number;
+  imageHeight: number;
+  icon: ReactNode;
+  imageMarginBottom?: string;
+}) => {
+  return (
+    <Box>
+      <CustomCard>
+        <Flex gap={"3"}>
+          <Flex direction={"column"} gap={"4"} flexGrow={"1"} justify={"center"}>
+            <Flex align={"center"}>
+              <IconButton variant='outline' style={{ marginRight: "1rem" }}>
+                {icon}
+              </IconButton>
+              <ArrowUpIcon color='green' />
+              <Text size={{ initial: "2", md: "2" }} weight={"medium"} color='green'>
+                {totalUp}
+              </Text>
+            </Flex>
+            <Box>
+              <Text size={{ initial: "7", md: "8" }} weight={"bold"} className='me-3'>
+                {value}
+              </Text>
+            </Box>
+            <Text size={"2"} weight={"medium"} color='gray'>
+              {description}
+            </Text>
+          </Flex>
+          <Image
+            src={imageSrc}
+            width={imageWidth}
+            height={imageHeight}
+            alt='revenue'
+            style={{ marginBottom: imageMarginBottom ?? "-30px", zIndex: 20 }}
+          ></Image>
+        </Flex>
+      </CustomCard>
+    </Box>
+  );
+};
+
 const DashboardExample = () => {
   return (
-    <div>
-      <Grid columns={{ initial: "1", lg: "2" }} gap={"3"}>
+    <Flex direction={"column"} gap={"5"}>
+      <Grid columns={{ initial: "1", lg: "2" }} gap={"5"}>
         <Box>
           <Card>
             <Flex direction={"column"} className='px-3 py-3' gap={"5"}>
@@ -219,11 +276,11 @@ const DashboardExample = () => {
             </Flex>
           </Card>
         </Box>
-        <Box>
-          <Grid columns={{ initial: "1", md: "2" }} gap={"3"}>
+        <Flex direction={"column"} gap={"5"}>
+          <Grid columns={{ initial: "1", md: "2" }} gap={"5"}>
             <Box>
               <ThirtyDaysCard
-                heading='Conversion'
+                heading='Impression'
                 data={[
                   200, 180, 150, 120, 100, 120, 150, 180, 200, 220, 250, 280, 300, 320, 350, 380, 400, 420, 450, 480,
                   500, 520, 550, 580, 600, 620, 650, 680, 700, 720
@@ -242,7 +299,7 @@ const DashboardExample = () => {
             </Box>
             <Box>
               <ThirtyDaysCard
-                heading='Impression'
+                heading='Leads'
                 data={[
                   114, 112, 123, 105, 104, 107, 106, 122, 122, 124, 108, 106, 100, 108, 100, 100, 111, 118, 107, 117,
                   127, 139, 150, 153, 140, 141, 155, 169, 182, 166
@@ -262,54 +319,63 @@ const DashboardExample = () => {
                 backgroundEndColor='rgba(62,214,140, 0.0)'
               />
             </Box>
-            <Box>
-              <ThirtyDaysCard
-                heading='Leads'
-                data={[
-                  85, 80, 75, 70, 60, 80, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165,
-                  170, 175, 180, 185, 190, 195, 200, 205
-                ]}
-                labels={thirtyDaysLabel}
-                value={"2,500"}
-                valueDescription={
-                  <>
-                    <Text size={"2"} color='green'>
-                      10%
-                    </Text>
-                    <Text size={"2"}>Above Target</Text>
-                  </>
-                }
-                borderColor='rgb(91,91,214)'
-                backgroundStartColor='rgba(91,91,214, 0.6)'
-                backgroundEndColor='rgba(91,91,214, 0.0)'
-              />
-            </Box>
-            <Box>
-              <ThirtyDaysCard
-                heading='Visits'
-                data={[
-                  2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700,
-                  3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000
-                ]}
-                labels={thirtyDaysLabel}
-                value={"78,291"}
-                valueDescription={
-                  <>
-                    <Text size={"1"} color='red'>
-                      6%
-                    </Text>
-                    <Text size={"1"}>Below Target</Text>
-                  </>
-                }
-                borderColor='rgb(229,72,77)'
-                backgroundStartColor='rgba(229,72,77, 0.6)'
-                backgroundEndColor='rgba(229,72,77, 0.0)'
-              />
-            </Box>
           </Grid>
-        </Box>
+          <Box>
+            <ThirtyDaysCard
+              heading='Visits'
+              data={[
+                2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700,
+                3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000
+              ]}
+              labels={thirtyDaysLabel}
+              value={"78,291"}
+              valueDescription={
+                <>
+                  <Text size={"1"} color='red'>
+                    6%
+                  </Text>
+                  <Text size={"1"}>Below Target</Text>
+                </>
+              }
+              borderColor='rgb(229,72,77)'
+              backgroundStartColor='rgba(229,72,77, 0.6)'
+              backgroundEndColor='rgba(229,72,77, 0.0)'
+            />
+          </Box>
+        </Flex>
       </Grid>
-    </div>
+      <Grid columns={{ initial: "1", md: "2", lg: "3" }} gap={"5"}>
+        <CustomBox
+          description='Revenue From Last 30 Days'
+          imageHeight={200}
+          imageWidth={200}
+          imageSrc='/images/illustrations/monkey.png'
+          totalUp='12%'
+          value='209,920'
+          icon={<BarChartIcon />}
+        />
+        <CustomBox
+          description='Shipments From Last 30 Days'
+          imageHeight={210}
+          imageWidth={200}
+          imageSrc='/images/illustrations/ship-1.png'
+          totalUp='5%'
+          value='4,020'
+          icon={<CodeSandboxLogoIcon />}
+          imageMarginBottom='-40px'
+        />
+        <CustomBox
+          description='Services From Last 30 Days'
+          imageHeight={210}
+          imageWidth={200}
+          imageSrc='/images/illustrations/builder.png'
+          totalUp='2%'
+          value='1,000'
+          icon={<CodeSandboxLogoIcon />}
+          imageMarginBottom='-40px'
+        />
+      </Grid>
+    </Flex>
   );
 };
 

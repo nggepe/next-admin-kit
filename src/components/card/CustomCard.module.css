@@ -1,9 +1,7 @@
-.borderCard {
-  transition: border-color 0.3s ease;
-  box-shadow: inset var(--shadow-4);
+.containLayout {
+  contain: layout !important;
 }
 
-/* Dark mode styles */
-:global(.dark) .borderCard {
-  box-shadow: var(--shadow-4);
+.overflowVisible {
+  overflow: visible !important;
 }

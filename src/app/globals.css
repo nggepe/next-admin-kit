@@ -252,3 +252,8 @@ body {
   background-color: var(--color-panel);
   backdrop-filter: blur(64px);
 }
+
+a {
+  text-decoration: none;
+  color: var(--accent-a10);
+}

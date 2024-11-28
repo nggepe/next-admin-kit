@@ -1,16 +1,20 @@
 # What is This?
 
-This is an open source Admin NextJs Starter Kit. It has a simple, beautiful and modern Admin dashboard template.
+This is an open source Admin NextJs Template. It is [using radix ui](https://www.radix-ui.com/). Support with theme customization.
 
-# Vision
+# Let's Get Started
 
-There are so many small projects in this world. Many developers start their small projects from scratch. My goal in making this is so that developers can increase their productivity.
-Our goals are to provide a dashboard template, a user management, role management, access control management, chat, building a new access with command line, customer pages and a lot more.
-
-# Installation
+## Installation
 
 1. clone this repository or use as template
 2. run `npm install`
 3. run `npx prisma migrate deploy`
 
-# Docs
+## Setting SideNav
+
+1. Go to `src/configs/accesses.tsx` and you can write down all of your accesses in there.
+2. Read the type and interface, and you will understand how to use it.
+
+## Change Global Background
+
+Go to `public/images/background.png` and you can change the background image.
