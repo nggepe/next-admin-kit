@@ -1,5 +1,7 @@
 "use client";
+import CircleBullet from "@/components/bullet/CircleBullet";
 import CustomCard from "@/components/card/CustomCard";
+import ChartJs from "@/components/charts/ChartJs";
 import LineChart from "@/components/charts/LineChart";
 import LineChartPlainGradient from "@/components/charts/LineChartPlainGradient";
 import { ArrowUpIcon, BarChartIcon, CodeSandboxLogoIcon } from "@radix-ui/react-icons";
@@ -237,6 +239,7 @@ const CustomBox = ({
             width={imageWidth}
             height={imageHeight}
             alt='revenue'
+            priority={false}
             style={{ marginBottom: imageMarginBottom ?? "-30px", zIndex: 20 }}
           ></Image>
         </Flex>
@@ -375,8 +378,146 @@ const DashboardExample = () => {
           imageMarginBottom='-40px'
         />
       </Grid>
+      <Heading as='h1' weight={"bold"} className='text-center'>
+        Your Target
+      </Heading>
+      <Grid columns={{ initial: "1", sm: "2", md: "3", lg: "4" }} gap={"5"} justify={"between"}>
+        <ThirtyDaysCardDoughnut
+          data={[
+            {
+              label: "Man",
+              value: 100,
+              background: "rgba(0,144,255, 0.5)"
+            },
+            {
+              label: "Woman",
+              value: 120,
+              background: "rgb(54, 162, 235)"
+            }
+          ]}
+          label='Gender'
+        />
+        <ThirtyDaysCardDoughnut
+          data={[
+            {
+              label: "Under 30",
+              value: 110,
+              background: "rgb(237,103,22)"
+            },
+            {
+              label: "Over 30",
+              value: 110,
+              background: "rgba(237,103,22,0.7)"
+            }
+          ]}
+          label='Age'
+        />
+        <ThirtyDaysCardDoughnut
+          data={[
+            {
+              label: "English",
+              value: 140,
+              background: "rgb(62,214,140)"
+            },
+            {
+              label: "Indonesia",
+              value: 80,
+              background: "rgb(62,214,140,0.6)"
+            }
+          ]}
+          label='Language'
+        />
+        <ThirtyDaysCardDoughnut
+          data={[
+            {
+              label: "Old Customer",
+              value: 180,
+              background: "rgb(229,72,77)"
+            },
+            {
+              label: "New Customer",
+              value: 40,
+              background: "rgba(229,72,77,0.5)"
+            }
+          ]}
+          label='Customer Type'
+        />
+      </Grid>
     </Flex>
   );
 };
 
 export default DashboardExample;
+const ThirtyDaysCardDoughnut = (props: {
+  label: string;
+  data: { label: string; value: number; background: string }[];
+}) => {
+  return (
+    <Flex align={"center"} direction={"column"}>
+      <Card style={{ maxWidth: "300px", minWidth: "240px" }}>
+        <Flex direction={"column"} gap={"3"} align={"center"}>
+          <Flex justify={"between"} align={"center"} className='w-100'>
+            <Heading as='h2' size={"4"} weight={"medium"}>
+              {props.label}
+            </Heading>
+            <Badge color='gray'>30 Days</Badge>
+          </Flex>
+          <div style={{ width: "150px", height: "150px" }}>
+            <ChartJs
+              config={{
+                type: "doughnut",
+                data: {
+                  labels: props.data.map((item) => item.label),
+                  datasets: [
+                    {
+                      label: props.label,
+                      data: props.data.map((item) => item.value),
+                      backgroundColor: props.data.map((item) => item.background),
+                      hoverOffset: 4,
+                      borderColor: "rgba(255, 205, 86,0)",
+                      spacing: 0
+                    }
+                  ]
+                },
+                options: {
+                  plugins: {
+                    legend: {
+                      display: false
+                    }
+                  },
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  cutout: "70%"
+                } as object
+              }}
+              canvasProps={{ style: { width: "100%" } }}
+            />
+          </div>
+          <Flex direction={"column"} gap={"0"} justify={"start"} className='w-100'>
+            {props.data.map((item, index) => {
+              return (
+                <Flex
+                  key={`${index}-${item.label}`}
+                  className='hover px-2 py-1'
+                  justify={"between"}
+                  align={"center"}
+                  style={{ borderRadius: ".25rem" }}
+                >
+                  <Flex align={"center"} gap={"2"}>
+                    <CircleBullet color={item.background} />
+                    <Text size={"2"} weight={"medium"}>
+                      {item.label}
+                    </Text>
+                  </Flex>
+                  <Text size={"2"} weight={"medium"}>
+                    {item.value}
+                  </Text>
+                </Flex>
+              );
+            })}
+          </Flex>
+        </Flex>
+      </Card>
+    </Flex>
+  );
+};

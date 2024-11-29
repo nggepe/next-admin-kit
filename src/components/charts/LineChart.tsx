@@ -1,7 +1,7 @@
 "use client";
 import { ChartData, ChartOptions } from "chart.js";
-import Chart from "chart.js/auto";
-import { CanvasHTMLAttributes, DetailedHTMLProps, useEffect, useRef } from "react";
+import { CanvasHTMLAttributes, DetailedHTMLProps } from "react";
+import ChartJs from "./ChartJs";
 export interface LineChartProps {
   data: ChartData<"line">;
   options: ChartOptions<"line">;
@@ -9,24 +9,9 @@ export interface LineChartProps {
 }
 
 const LineChart = (props: LineChartProps) => {
-  const chartRef = useRef<HTMLCanvasElement | null>(null);
-  const chartInstanceRef = useRef<Chart | null>(null);
-
-  useEffect(() => {
-    if (chartRef.current) {
-      if (chartInstanceRef.current) {
-        chartInstanceRef.current.destroy();
-      }
-
-      chartInstanceRef.current = new Chart(chartRef.current, {
-        type: "line",
-        data: props.data,
-        options: props.options
-      });
-    }
-  }, [props.data, props.options]);
-
-  return <canvas style={{ width: "100%" }} {...props.canvasProps} ref={chartRef}></canvas>;
+  return (
+    <ChartJs config={{ data: props.data, options: props.options, type: "line" }} canvasProps={props.canvasProps} />
+  );
 };
 
 export default LineChart;
