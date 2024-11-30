@@ -15,7 +15,8 @@ export default defineConfig({
         "src/types",
         "src/app/layout.tsx",
         "src/**/*.test.ts", // Exclude .test.ts files
-        "src/**/*.test.tsx" // Exclude .test.tsx files
+        "src/**/*.test.tsx", // Exclude .test.tsx files
+        "src/**/*.stories.tsx" // Exclude .test.tsx files
       ]
     },
     globals: true,
