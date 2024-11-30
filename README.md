@@ -18,3 +18,11 @@ This is an open source Admin NextJs Template. It is [using radix ui](https://www
 ## Change Global Background
 
 Go to `public/images/background.png` and you can change the background image.
+
+# More Docs?
+
+npm run storybook
+
+# Raise Issue
+
+Please raise an issue if you have any questions or suggestions.
