@@ -1,4 +1,4 @@
-name: Deployment
+name: Unit Tests & Coverages
 
 on:
   pull_request:
