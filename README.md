@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/nggepe/next-admin-kit/graph/badge.svg?token=7Q8REH1DGP)](https://codecov.io/gh/nggepe/next-admin-kit)
+
 # What is This?
 
 This is an open source Admin NextJs Template. It is [using radix ui](https://www.radix-ui.com/). Support with theme customization.
