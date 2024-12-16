@@ -164,7 +164,7 @@ const ThirtyDaysCard = ({
   return (
     <Card>
       <Flex direction={"column"} gap={"0"}>
-        <Flex direction={"column"} gap={"3"} className='px-2 pt-2'>
+        <Flex direction={"column"} gap={"3"} px={"2"} pt={"2"}>
           <Flex align={"center"} justify={"between"}>
             <Heading as='h1' size={"4"} weight={"medium"}>
               {heading}
@@ -226,7 +226,7 @@ const CustomBox = ({
               </Text>
             </Flex>
             <Box>
-              <Text size={{ initial: "7", md: "8" }} weight={"bold"} className='me-3'>
+              <Text size={{ initial: "7", md: "8" }} weight={"bold"} ml={"4"}>
                 {value}
               </Text>
             </Box>
@@ -254,7 +254,7 @@ const DashboardExample = () => {
       <Grid columns={{ initial: "1", lg: "2" }} gap={"5"}>
         <Box>
           <Card>
-            <Flex direction={"column"} className='px-3 py-3' gap={"5"}>
+            <Flex direction={"column"} gap={"5"} px={"4"} py={"4"}>
               <Flex justify={"between"}>
                 <Heading as='h1' size={"5"} weight={"medium"}>
                   Sales Summary
@@ -498,7 +498,9 @@ const ThirtyDaysCardDoughnut = (props: {
               return (
                 <Flex
                   key={`${index}-${item.label}`}
-                  className='hover px-2 py-1'
+                  className='hover'
+                  py={"1"}
+                  px={"2"}
                   justify={"between"}
                   align={"center"}
                   style={{ borderRadius: ".25rem" }}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HomeIcon, ContainerIcon, PersonIcon, LockClosedIcon } from "@radix-ui/react-icons";
+import { HomeIcon, LockClosedIcon, EnterIcon } from "@radix-ui/react-icons";
 import { ReactElement } from "react";
 
 type accessType = "sidenavMenu" | "sidenavSeparator" | "invisibleAccess";
@@ -32,27 +32,19 @@ export const accesses: accessProps[] = [
     sequence: 2
   },
   {
-    key: "master",
-    name: "Master",
-    icon: <ContainerIcon />,
+    key: "auth",
+    name: "Auth",
+    icon: <LockClosedIcon />,
     type: "sidenavMenu",
     sequence: 3,
     children: [
       {
-        key: "/master/users",
-        path: "/master/users",
-        name: "Users",
-        icon: <PersonIcon />,
+        key: "/login",
+        path: "/login",
+        name: "Login",
         sequence: 1,
-        type: "sidenavMenu"
-      },
-      {
-        key: "/master/role",
-        path: "/master/role",
-        name: "Roles",
-        icon: <LockClosedIcon />,
-        sequence: 2,
-        type: "sidenavMenu"
+        type: "sidenavMenu",
+        icon: <EnterIcon />
       }
     ]
   }

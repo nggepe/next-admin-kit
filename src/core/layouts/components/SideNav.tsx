@@ -29,7 +29,7 @@ const SideNav = () => {
           {SideNavStateIcon[sideNavState]}
         </IconButton>
       </Flex>
-      <ScrollArea scrollbars='vertical' className='p-3' style={{ height: "calc(100vh - 100px)", marginTop: "0.5rem" }}>
+      <ScrollArea scrollbars='vertical' style={{ height: "calc(100vh - 100px)", marginTop: "0.5rem", padding: "1rem" }}>
         <Suspense fallback={<div>Loading...</div>}>
           <SideNavMenu />
         </Suspense>
