@@ -84,7 +84,7 @@ const Header = () => {
             <NavigationMenu.List className='NavigationMenuList'>
               <NavigationMenu.Item>
                 <NavigationMenu.Trigger className='NavigationMenuTrigger'>
-                  <Avatar fallback={"ST"} size={"2"} src='/images/profile.jpeg' ml={"2"} radius='full'></Avatar>
+                  <Avatar fallback={"ST"} size={"2"} src='/images/profile.jpeg' mr={"2"} radius='full'></Avatar>
                   <Text as='span'>Gilang Pratama</Text>
                   <CaretDownIcon className='CaretDown' aria-hidden />
                 </NavigationMenu.Trigger>
