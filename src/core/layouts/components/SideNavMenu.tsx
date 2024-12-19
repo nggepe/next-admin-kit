@@ -2,7 +2,7 @@
 import { accesses, accessProps } from "@/configs/accesses";
 import { SideNavMenuProvider, useSideNavMenuContext } from "@/core/context/SideNavMenuContext";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
-import { Flex, Text } from "@radix-ui/themes";
+import { Box, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -59,8 +59,10 @@ export const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
   return (
     <li key={access.key} aria-label={access.key}>
       <Link href={access.path!}>
-        <div
-          className={`cursor-pointer px-3 py-2 d-block position-relative hover ${isActive ? "active" : ""}`}
+        <Box
+          py={"2"}
+          className={`cursor-pointer d-block position-relative hover ${isActive ? "active" : ""}`}
+          px={"4"}
           onClick={() => {
             setActivePath(access.path ?? "");
           }}
@@ -76,7 +78,7 @@ export const SideNavMenuNoChildren = ({ access }: { access: accessProps }) => {
               </div>
             </Flex>
           </Flex>
-        </div>
+        </Box>
       </Link>
     </li>
   );
@@ -90,8 +92,10 @@ export const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
   }, [activePath, access]);
   return (
     <li key={access.key} aria-label={access.key}>
-      <div
-        className={`cursor-pointer px-3 py-2 d-block position-relative hover ${isActive ? "active" : ""}`}
+      <Box
+        className={`cursor-pointer d-block position-relative hover ${isActive ? "active" : ""}`}
+        py={"2"}
+        px={"4"}
         onClick={() => setIsActive(!isActive)}
         aria-label={`menu-item-${access.key}`}
       >
@@ -108,7 +112,7 @@ export const SideNavMenuHasChildren = ({ access }: { access: accessProps }) => {
         <div style={{ position: "absolute", right: "1rem", top: "30%" }}>
           <ChevronDownIcon style={{ transform: isActive ? "rotate(180deg)" : "rotate(0deg)", transition: "0.5s" }} />
         </div>
-      </div>
+      </Box>
       <ul>
         {isActive &&
           access.children!.map((child) => {

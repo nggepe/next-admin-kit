@@ -4,7 +4,7 @@ import "@/core/styles/radixTheme.css";
 import { ReactNode } from "react";
 import { ThemeProvider } from "next-themes";
 import Header from "../components/Header";
-import { Box, Container, Flex, Theme } from "@radix-ui/themes";
+import { Box, Flex, Theme } from "@radix-ui/themes";
 import SideNav from "../components/SideNav";
 import { LayoutProvider } from "../../context/LayoutContext";
 import Link from "next/link";
@@ -36,11 +36,10 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
               }}
             >
               <main className='flex-1' style={{ minHeight: "calc(100vh - 120px)" }}>
-                <Container maxWidth={{ xl: "1300px" }} style={{ padding: "1rem 1rem" }} aria-label='container fluid'>
-                  {children}
-                </Container>
+                {children}
               </main>
-              <footer className='bg-panel px-3'>
+              {/* footer */}
+              <Box as='div' className='bg-panel' px={"4"}>
                 <Flex justify={"end"} align={"center"} height={"50px"}>
                   <span>
                     Made with ❤️ by{" "}
@@ -49,7 +48,7 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
                     </Link>
                   </span>
                 </Flex>
-              </footer>
+              </Box>
             </div>
           </Box>
         </Flex>

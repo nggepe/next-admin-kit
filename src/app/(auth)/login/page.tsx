@@ -9,8 +9,8 @@ const LoginPage = () => {
     <Box width={"768px"} maxWidth={"100%"}>
       <Card variant='surface'>
         <Flex>
-          <Flex flexGrow={"1"} direction={"column"} gap={"3"} justify={"center"} className='px-3'>
-            <Text as='div' size='8' weight='bold' className='mb-3'>
+          <Flex flexGrow={"1"} direction={"column"} gap={"3"} justify={"center"} px={"4"}>
+            <Text as='div' size='8' weight='bold' mb={"4"}>
               Sign In
             </Text>
             <Text as='div' color='gray' size='2'>
