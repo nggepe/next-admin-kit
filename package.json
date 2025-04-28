@@ -28,7 +28,7 @@
     "vitest-matchmedia-mock": "^2.0.1"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.4",
+    "@chromatic-com/storybook": "^3.2.6",
     "@storybook/addon-essentials": "^8.5.0",
     "@storybook/addon-interactions": "^8.5.8",
     "@storybook/addon-onboarding": "^8.6.0",
